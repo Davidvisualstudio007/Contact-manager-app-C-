@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Navigation;
-using WPFassesment.Models;
+﻿using WPFassesment.Models;
 
 namespace WPFassesment.ViewModels
 {

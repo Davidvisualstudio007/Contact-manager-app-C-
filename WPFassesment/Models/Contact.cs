@@ -2,8 +2,12 @@
 
 namespace WPFassesment.Models
 {
+
     public class Contact
     {
+        /// <summary>
+        /// Represents a contact with identifying and communication details.
+        /// </summary>
         public int Id {  get; set; }
         // this can take and change the id
         public string FullName { get; set; } = string.Empty;
@@ -16,8 +20,11 @@ namespace WPFassesment.Models
         public static bool IsValidName(string? name)
         // checks if name is not empty or while space
         {
-            return !string.IsNullOrEmpty(name);
+            return !string.IsNullOrWhiteSpace(name);
         }
+        /// <summary>
+        /// Validates that the email is either empty or in a basic valid format.
+        /// </summary>
         public static bool IsValidEmail(string? email)
         {
             if (string.IsNullOrWhiteSpace(email))

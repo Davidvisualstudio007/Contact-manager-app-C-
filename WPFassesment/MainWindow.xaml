@@ -36,19 +36,12 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button x:Name="AddButton"
                     Content="Add"
-                    Width="80"
-                    Margin="0,0,10,0"
+                    Width="133"
+                    Margin="0,0,35,0"
                     Click="AddButton_Click"/>
-
-                <Button x:Name="RemoveButton"
-                    Content="Remove"
-                    Width="80"
-                    Margin="0,0,10,0"
-                    Click="RemoveButton_Click"/>
-
                 <Button x:Name="SearchButton"
                     Content="Search"
-                    Width="80"
+                    Width="133"
                     Click="SearchButton_Click"/>
             </StackPanel>
 
@@ -64,13 +57,18 @@
                        Margin="0,0,0,10" />
 
             <ListBox x:Name="ContactListBox"
-                     Height="400"
+                     Height="370"
                      BorderThickness="1"
                      BorderBrush="#ccc"
                      Background="White"
                      Padding="5" 
                      DisplayMemberPath="FullName"
                      SelectionChanged="ContactListBox_SelectionChanged"/>
+            <Button x:Name="RemoveButton"
+                    Content="Remove Selected"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,5,0,0"
+                    Click="RemoveButton_Click"/>            
         </StackPanel>
 
     </Grid>
