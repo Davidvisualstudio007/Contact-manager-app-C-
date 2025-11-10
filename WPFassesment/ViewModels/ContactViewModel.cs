@@ -7,7 +7,7 @@ namespace WPFassesment.ViewModels
     public class ContactViewModel
     {
         private int nextId = 1;
-        public List<Contact> contacts { get; } = new List<Contact>();
+        public List<Contact> Contacts { get; } = new List<Contact>();
 
         public bool AddContact(string fullName, string phone, string email)
         {
@@ -22,34 +22,34 @@ namespace WPFassesment.ViewModels
 
             var newContact = new Contact
             {
-                id = nextId,
-                fullName = fullName,
-                phone = phone,
-                email = email
+                Id = nextId,
+                FullName = fullName,
+                Phone = phone,
+                Email = email
             };
 
-            contacts.Add(newContact);
+            Contacts.Add(newContact);
             nextId++;
             return true;
         }
         public bool RemoveContact(int id)
         {
-            foreach (var contact in contacts)
+            for (int i = 0; i < Contacts.Count; i++)
             {
-                if (contact.id == id)
+                if (Contacts[i].Id == id)
                 {
-                    contacts.Remove(contact);
+                    Contacts.RemoveAt(i);
                     return true;
                 }
             }
-
             return false;
         }
+
         public Contact? SearchContact(string fullName)
         {
-            foreach (var contact in contacts)
+            foreach (var contact in Contacts)
             {
-                if (contact.fullName.ToLower().Contains(fullName.ToLower()))
+                if (contact.FullName.ToLower().Contains(fullName.ToLower()))
                 {
                     return contact; 
                 }

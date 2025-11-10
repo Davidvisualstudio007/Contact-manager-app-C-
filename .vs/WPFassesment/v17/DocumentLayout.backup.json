@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|c:\\users\\daudt\\onedrive - tafe\\wpfassesmentapp\\wpfassesment\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|solutionrelative:wpfassesment\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|c:\\users\\daudt\\onedrive - tafe\\wpfassesmentapp\\wpfassesment\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|solutionrelative:wpfassesment\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|c:\\users\\daudt\\onedrive - tafe\\wpfassesmentapp\\wpfassesment\\viewmodels\\contactviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|solutionrelative:wpfassesment\\viewmodels\\contactviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|c:\\users\\daudt\\onedrive - tafe\\wpfassesmentapp\\wpfassesment\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6847AE5-36D5-40CE-84D6-F07A05D5782D}|WPFassesment\\WPFassesment.csproj|solutionrelative:wpfassesment\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContactViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\ViewModels\\ContactViewModel.cs",
+              "RelativeDocumentMoniker": "WPFassesment\\ViewModels\\ContactViewModel.cs",
+              "ToolTip": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\ViewModels\\ContactViewModel.cs",
+              "RelativeToolTip": "WPFassesment\\ViewModels\\ContactViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T18:50:20.575Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "WPFassesment\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\MainWindow.xaml*",
+              "RelativeToolTip": "WPFassesment\\MainWindow.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-09T18:50:42.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WPFassesment\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\MainWindow.xaml.cs",
+              "RelativeToolTip": "WPFassesment\\MainWindow.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwDYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T18:50:33.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Contact.cs",
+              "DocumentMoniker": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\Models\\Contact.cs",
+              "RelativeDocumentMoniker": "WPFassesment\\Models\\Contact.cs",
+              "ToolTip": "C:\\Users\\daudt\\OneDrive - TAFE\\WPFassesmentApp\\WPFassesment\\Models\\Contact.cs",
+              "RelativeToolTip": "WPFassesment\\Models\\Contact.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T18:50:19.488Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

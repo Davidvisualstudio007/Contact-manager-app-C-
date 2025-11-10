@@ -4,13 +4,13 @@ namespace WPFassesment.Models
 {
     public class Contact
     {
-        public int id {  get; set; }
+        public int Id {  get; set; }
         // this can take and change the id
-        public string fullName { get; set; } = string.Empty;
+        public string FullName { get; set; } = string.Empty;
         // this can take and change the name
-        public string email { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
         // this can take and change the email
-        public string phone { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
         // this can take and change the phone number
         // string because most number include symbols
         public static bool IsValidName(string? name)
