@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WPFassesment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8cb782758bd2da1ac25ff137d14e71a85746d30a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b0e5e8f63a6b39ae24ead5ad0f73ce208579ee0")]
 [assembly: System.Reflection.AssemblyProductAttribute("WPFassesment")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WPFassesment")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
