@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace WPFassesment.Models
 {
-    internal class Contractor
+    public class Contractor
     {
+        public int Id { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string FullName => $"{FirstName} {LastName}";
+        public DateTime StartDate { get; set; }
+        public decimal HourlyWage { get; set; }
+        public static bool IsValidName(string? first, string? last)
+        {
+            return !string.IsNullOrWhiteSpace(first)
+                && !string.IsNullOrWhiteSpace(last);
+        }
     }
 }
