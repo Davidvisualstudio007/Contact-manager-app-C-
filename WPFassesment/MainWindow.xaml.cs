@@ -8,11 +8,12 @@ namespace WPFassesment
     public partial class MainWindow : Window
     {
         private ContactViewModel viewModel = new ContactViewModel();
+        private RecruitmentSystem recruitmentSystem = new RecruitmentSystem();
 
         public MainWindow()
         {
             InitializeComponent();
-            ContactListBox.ItemsSource = viewModel.Contacts;
+            ContactListBox.ItemsSource = recruitmentSystem.Contractors;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
