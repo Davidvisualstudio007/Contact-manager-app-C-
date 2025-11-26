@@ -7,7 +7,6 @@ namespace WPFassesment
 {
     public partial class MainWindow : Window
     {
-        private ContactViewModel viewModel = new ContactViewModel();
         private RecruitmentSystem recruitmentSystem = new RecruitmentSystem();
 
         public MainWindow()
