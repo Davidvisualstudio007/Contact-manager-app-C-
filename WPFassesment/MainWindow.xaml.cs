@@ -20,9 +20,9 @@ namespace WPFassesment
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            string firstName = FullNameTextBox.Text;
-            string lastName = PhoneTextBox.Text;
-            string hourlyText = EmailTextBox.Text;
+            string firstName = FirstNameTextBox.Text;
+            string lastName = LastNameTextBox.Text;
+            string hourlyText = WageTextBox.Text;
 
             if (!decimal.TryParse(hourlyText, out decimal hourlyWage))
             {
@@ -42,9 +42,9 @@ namespace WPFassesment
 
             StatusText.Text = "Contractor added!";
 
-            FullNameTextBox.Text = string.Empty;
-            PhoneTextBox.Text = string.Empty;
-            EmailTextBox.Text = string.Empty;
+            FirstNameTextBox.Text = string.Empty;
+            LastNameTextBox.Text = string.Empty;
+            WageTextBox.Text = string.Empty;
 
             ContactListBox.Items.Refresh();
         }
@@ -74,7 +74,7 @@ namespace WPFassesment
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            string keyword = FullNameTextBox.Text;
+            string keyword = FirstNameTextBox.Text;
 
             if (string.IsNullOrWhiteSpace(keyword))
             {
@@ -111,15 +111,15 @@ namespace WPFassesment
         {
             if (ContactListBox.SelectedItem is not Contractor selected)
             {
-                FullNameTextBox.Text = "";
-                PhoneTextBox.Text = "";
-                EmailTextBox.Text = "";
+                FirstNameTextBox.Text = "";
+                LastNameTextBox.Text = "";
+                WageTextBox.Text = "";
                 return;
             }
 
-            FullNameTextBox.Text = selected.FirstName;
-            PhoneTextBox.Text = selected.LastName;
-            EmailTextBox.Text = selected.HourlyWage.ToString();
+            FirstNameTextBox.Text = selected.FirstName;
+            LastNameTextBox.Text = selected.LastName;
+            WageTextBox.Text = selected.HourlyWage.ToString();
 
             StatusText.Text = $"Selected: {selected.FullName}";
         }
