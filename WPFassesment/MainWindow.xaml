@@ -32,6 +32,11 @@
             <TextBox   x:Name="WageTextBox"
                        Height="28"
                        Margin="0,0,0,20"/>
+            
+            <TextBlock Text="Start Date" Margin="0,0,0,4" />
+            <DatePicker x:Name="ContractorStartDatePicker"
+                       Margin="0,0,0,20" />
+
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button x:Name="AddButton"
@@ -60,14 +65,14 @@
                    FontWeight="Bold"
                    Margin="0,0,0,10" />
 
-                <ListBox x:Name="ContactListBox"
+                <ListBox x:Name="ContractorListBox"
                  Height="200"
                  BorderThickness="1"
                  BorderBrush="#ccc"
                  Background="White"
                  Padding="5" 
                  DisplayMemberPath="FullName"
-                 SelectionChanged="ContactListBox_SelectionChanged"/>
+                 SelectionChanged="ContractorListBox_SelectionChanged"/>
 
                 <Button x:Name="RemoveButton"
                 Content="Remove Selected"
@@ -100,18 +105,71 @@
                 Margin="0,0,0,10"
                 Click="AddJobButton_Click"/>
 
+                <TextBlock Text="Job Filters"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Margin="0,10,0,5" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <Button x:Name="ShowAllJobsButton"
+                            Content="All"
+                            Width="60"
+                            Margin="0,0,5,0"
+                            Click="ShowAllJobsButton_Click" />
+                    <Button x:Name="ShowUnassignedJobsButton"
+                            Content="Unassigned"
+                            Width="90"
+                            Margin="0,0,5,0"
+                            Click="ShowUnassignedJobsButton_Click" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBox x:Name="JobCostSearchTextBox"
+                            Width="80"
+                            Margin="0,0,5,0"
+                            ToolTip="Cost to search" />
+                    <Button x:Name="SearchJobByCostButton"
+                            Content="Find by Cost"
+                            Click="SearchJobByCostButton_Click" />
+                </StackPanel>
+
+
                 <TextBlock Text="Jobs"
                    FontSize="18"
                    FontWeight="Bold"
                    Margin="0,10,0,5" />
 
                 <ListBox x:Name="JobListBox"
-                 Height="180"
-                 BorderThickness="1"
-                 BorderBrush="#ccc"
-                 Background="White"
-                 Padding="5"
-                 DisplayMemberPath="Title"/>
+                    Height="180"
+                    BorderThickness="1"
+                    BorderBrush="#ccc"
+                    Background="White"
+                    Padding="5">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,0,5" Padding="4" BorderThickness="0,0,0,1" BorderBrush="#ddd">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}"
+                               FontWeight="Bold" />
+
+                                    <TextBlock Text="{Binding Date, StringFormat='Date: {0:d}'}" />
+                                    <TextBlock Text="{Binding ContractorAssigned.FullName}" />
+
+                                    <TextBlock>
+                        <Run Text="Wage: " />
+                        <Run Text="{Binding ContractorAssigned.HourlyWage, TargetNullValue='N/A'}" />
+                                    </TextBlock>
+
+                                    <TextBlock>
+                        <Run Text="Completed: " />
+                        <Run Text="{Binding Completed}" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
 
                 <Button x:Name="AssignJobButton"
                 Content="Assign Selected Job to Selected Contractor"

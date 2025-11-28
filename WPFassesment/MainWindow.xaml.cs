@@ -2,6 +2,8 @@
 using System.Windows.Controls;
 using WPFassesment.Models;
 using WPFassesment.ViewModels;
+using System.Collections.Generic;
+
 
 namespace WPFassesment
 {
@@ -13,7 +15,7 @@ namespace WPFassesment
         {
             InitializeComponent();
 
-            ContactListBox.ItemsSource = recruitmentSystem.Contractors;
+            ContractorListBox.ItemsSource = recruitmentSystem.Contractors;
             JobListBox.ItemsSource = recruitmentSystem.Jobs;
         }
 
@@ -21,37 +23,39 @@ namespace WPFassesment
         {
             string firstName = FirstNameTextBox.Text;
             string lastName = LastNameTextBox.Text;
-            string hourlyText = WageTextBox.Text;
+            string wageText = WageTextBox.Text;
 
-            if (!decimal.TryParse(hourlyText, out decimal hourlyWage))
+            if (!decimal.TryParse(wageText, out decimal wage))
             {
-                StatusText.Text = "Hourly wage must be a number.";
+                StatusText.Text = "Hourly wage must be a valid number.";
                 return;
             }
 
-            DateTime startDate = DateTime.Today;
+            DateTime startDate = ContractorStartDatePicker.SelectedDate ?? DateTime.Today;
 
-            bool success = recruitmentSystem.AddContractor(firstName, lastName, startDate, hourlyWage);
+            bool success = recruitmentSystem.AddContractor(firstName, lastName, startDate, wage);
 
             if (!success)
             {
-                StatusText.Text = "Invalid contractor details. Check first/last name and wage.";
+                StatusText.Text = "Invalid contractor details. Check names and wage > 0.";
                 return;
             }
 
-            StatusText.Text = "Contractor added!";
+            StatusText.Text = "Contractor added.";
 
             FirstNameTextBox.Text = string.Empty;
             LastNameTextBox.Text = string.Empty;
             WageTextBox.Text = string.Empty;
+            ContractorStartDatePicker.SelectedDate = null;
 
-            ContactListBox.Items.Refresh();
+            ContractorListBox.Items.Refresh();
         }
+
 
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ContactListBox.SelectedItem is not Contractor selected)
+            if (ContractorListBox.SelectedItem is not Contractor selected)
             {
                 StatusText.Text = "Choose which contractor to remove.";
                 return;
@@ -62,7 +66,7 @@ namespace WPFassesment
             if (removed)
             {
                 StatusText.Text = "Contractor has been removed.";
-                ContactListBox.Items.Refresh();
+                ContractorListBox.Items.Refresh();
             }
             else
             {
@@ -95,8 +99,8 @@ namespace WPFassesment
 
             if (found != null)
             {
-                ContactListBox.SelectedItem = found;
-                ContactListBox.ScrollIntoView(found);
+                ContractorListBox.SelectedItem = found;
+                ContractorListBox.ScrollIntoView(found);
                 StatusText.Text = $"Contractor found: {found.FullName}";
             }
             else
@@ -106,22 +110,25 @@ namespace WPFassesment
         }
 
 
-        private void ContactListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ContractorListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ContactListBox.SelectedItem is not Contractor selected)
+            if (ContractorListBox.SelectedItem is not Contractor selected)
             {
                 FirstNameTextBox.Text = "";
                 LastNameTextBox.Text = "";
                 WageTextBox.Text = "";
+                ContractorStartDatePicker.SelectedDate = null;
                 return;
             }
 
             FirstNameTextBox.Text = selected.FirstName;
             LastNameTextBox.Text = selected.LastName;
             WageTextBox.Text = selected.HourlyWage.ToString();
+            ContractorStartDatePicker.SelectedDate = selected.StartDate;
 
             StatusText.Text = $"Selected: {selected.FullName}";
         }
+
         private void AddJobButton_Click(object sender, RoutedEventArgs e)
         {
             string title = JobTitleTextBox.Text;
@@ -130,6 +137,8 @@ namespace WPFassesment
             if (!decimal.TryParse(costText, out decimal cost))
             {
                 StatusText.Text = "Job cost must be a valid number.";
+                JobListBox.ItemsSource = recruitmentSystem.Jobs;
+                JobListBox.Items.Refresh();
                 return;
             }
 
@@ -160,7 +169,7 @@ namespace WPFassesment
                 return;
             }
 
-            if (ContactListBox.SelectedItem is not Contractor selectedContractor)
+            if (ContractorListBox.SelectedItem is not Contractor selectedContractor)
             {
                 StatusText.Text = "Select a contractor to assign the job to.";
                 return;
@@ -170,7 +179,7 @@ namespace WPFassesment
 
             if (!success)
             {
-                StatusText.Text = "Could not assign job. Check: job not completed/already assigned, contractor available.";
+                StatusText.Text = "Could not assign job. Check: job Completed/Contractor Busy/Already Assigned.";
                 return;
             }
 
@@ -197,6 +206,46 @@ namespace WPFassesment
             StatusText.Text = $"Job '{selectedJob.Title}' marked as completed.";
             JobListBox.Items.Refresh();
         }
+
+        private void ShowAllJobsButton_Click(object sender, RoutedEventArgs e)
+        {
+            JobListBox.ItemsSource = recruitmentSystem.Jobs;
+            JobListBox.Items.Refresh();
+            StatusText.Text = "Showing all jobs.";
+        }
+
+        private void ShowUnassignedJobsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var unassigned = recruitmentSystem.GetUnassignedJobs();
+            JobListBox.ItemsSource = unassigned;
+            JobListBox.Items.Refresh();
+            StatusText.Text = "Showing unassigned jobs.";
+        }
+
+        private void SearchJobByCostButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!decimal.TryParse(JobCostSearchTextBox.Text, out decimal cost))
+            {
+                StatusText.Text = "Enter a valid cost to search.";
+                return;
+            }
+
+            var job = recruitmentSystem.GetJobByCost(cost);
+
+            if (job == null)
+            {
+                JobListBox.ItemsSource = new List<Job>();
+                JobListBox.Items.Refresh();
+                StatusText.Text = "No job found with that cost.";
+            }
+            else
+            {
+                JobListBox.ItemsSource = new List<Job> { job };
+                JobListBox.Items.Refresh();
+                StatusText.Text = $"Showing job with cost {cost}.";
+            }
+        }
+
 
     }
 }
