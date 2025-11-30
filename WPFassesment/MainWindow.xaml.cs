@@ -224,27 +224,43 @@ namespace WPFassesment
 
         private void SearchJobByCostButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!decimal.TryParse(JobCostSearchTextBox.Text, out decimal cost))
+            if (!decimal.TryParse(JobCostMinTextBox.Text, out decimal minCost) ||
+                !decimal.TryParse(JobCostMaxTextBox.Text, out decimal maxCost))
             {
-                StatusText.Text = "Enter a valid cost to search.";
+                StatusText.Text = "Enter valid min and max cost.";
                 return;
             }
 
-            var job = recruitmentSystem.GetJobByCost(cost);
+            if (minCost > maxCost)
+            {
+                StatusText.Text = "Min cost cannot be greater than max cost.";
+                return;
+            }
 
-            if (job == null)
+            var matchingJobs = new List<Job>();
+
+            foreach (var job in recruitmentSystem.Jobs)
+            {
+                if (job.Cost >= minCost && job.Cost <= maxCost)
+                {
+                    matchingJobs.Add(job);
+                }
+            }
+
+            if (matchingJobs.Count == 0)
             {
                 JobListBox.ItemsSource = new List<Job>();
                 JobListBox.Items.Refresh();
-                StatusText.Text = "No job found with that cost.";
+                StatusText.Text = "No jobs found in that cost range.";
             }
             else
             {
-                JobListBox.ItemsSource = new List<Job> { job };
+                JobListBox.ItemsSource = matchingJobs;
                 JobListBox.Items.Refresh();
-                StatusText.Text = $"Showing job with cost {cost}.";
+                StatusText.Text = $"Showing jobs with cost between {minCost} and {maxCost}.";
             }
         }
+
 
 
     }

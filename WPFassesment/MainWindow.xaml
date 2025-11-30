@@ -66,13 +66,22 @@
                    Margin="0,0,0,10" />
 
                 <ListBox x:Name="ContractorListBox"
-                 Height="200"
-                 BorderThickness="1"
-                 BorderBrush="#ccc"
-                 Background="White"
-                 Padding="5" 
-                 DisplayMemberPath="FullName"
-                 SelectionChanged="ContractorListBox_SelectionChanged"/>
+                    Height="200"
+                    BorderThickness="1"
+                    BorderBrush="#ccc"
+                    Background="White"
+                    Padding="5"
+                    SelectionChanged="ContractorListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding FullName}" />
+                                <Run Text=" - " />
+                                <Run Text="{Binding HourlyWage, StringFormat='${0:F2}'}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
                 <Button x:Name="RemoveButton"
                 Content="Remove Selected"
@@ -124,15 +133,19 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBox x:Name="JobCostSearchTextBox"
-                            Width="80"
-                            Margin="0,0,5,0"
-                            ToolTip="Cost to search" />
+                    <TextBox x:Name="JobCostMinTextBox"
+                    Width="80"
+                    Margin="0,0,5,0"
+                    ToolTip="Min cost" />
+                    <TextBox x:Name="JobCostMaxTextBox"
+                    Width="80"
+                    Margin="0,0,5,0"
+                    ToolTip="Max cost" />
                     <Button x:Name="SearchJobByCostButton"
-                            Content="Find by Cost"
-                            Click="SearchJobByCostButton_Click" />
+                    Content="Find by Cost Range"
+                    Click="SearchJobByCostButton_Click" />
                 </StackPanel>
-
+                
 
                 <TextBlock Text="Jobs"
                    FontSize="18"
@@ -153,16 +166,23 @@
                                FontWeight="Bold" />
 
                                     <TextBlock Text="{Binding Date, StringFormat='Date: {0:d}'}" />
+                                   
                                     <TextBlock Text="{Binding ContractorAssigned.FullName}" />
 
                                     <TextBlock>
-                        <Run Text="Wage: " />
-                        <Run Text="{Binding ContractorAssigned.HourlyWage, TargetNullValue='N/A'}" />
+                                        <Run Text="Cost: " />
+                                        <Run Text="{Binding Cost, StringFormat='${0:F2}'}" />
+                                    </TextBlock>
+
+
+                                    <TextBlock>
+                                        <Run Text="Wage: " />
+                                        <Run Text="{Binding ContractorAssigned.HourlyWage, TargetNullValue='N/A'}" />
                                     </TextBlock>
 
                                     <TextBlock>
-                        <Run Text="Completed: " />
-                        <Run Text="{Binding Completed}" />
+                                        <Run Text="Completed: " />
+                                        <Run Text="{Binding Completed}" />
                                     </TextBlock>
                                 </StackPanel>
                             </Border>
