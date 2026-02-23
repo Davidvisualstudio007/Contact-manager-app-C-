@@ -51,6 +51,20 @@ namespace WPFassesment
             ContractorListBox.Items.Refresh();
         }
 
+        private void ShowAllContractorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContractorListBox.ItemsSource = recruitmentSystem.Contractors;
+            ContractorListBox.Items.Refresh();
+            StatusText.Text = "Showing all contractors.";
+        }
+
+        private void ShowAvailableContractorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var available = recruitmentSystem.GetAvailableContractors();
+            ContractorListBox.ItemsSource = available;
+            ContractorListBox.Items.Refresh();
+            StatusText.Text = "Showing available contractors.";
+        }
 
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
@@ -75,7 +89,7 @@ namespace WPFassesment
         }
 
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        private void SearchButton_Click(object sender, RoutedEventArgs e) 
         {
             string keyword = FirstNameTextBox.Text;
 

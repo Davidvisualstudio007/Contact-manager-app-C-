@@ -11,7 +11,11 @@ namespace WPFassesment.Models
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        public string FullName => $"{FirstName} {LastName}";
+        public string FullName
+        {
+            get => $"{FirstName} {LastName}";
+            set { }
+        }
         public DateTime StartDate { get; set; }
         public decimal HourlyWage { get; set; }
         public static bool IsValidName(string? first, string? last)

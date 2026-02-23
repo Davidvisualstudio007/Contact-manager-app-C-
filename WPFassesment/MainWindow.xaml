@@ -89,6 +89,19 @@
                 Margin="0,5,0,10"
                 Click="RemoveButton_Click"/>
 
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,10">
+                    <Button x:Name="ShowAllContractorsButton"
+                        Content="All Contractors"
+                        Width="200"
+                        Margin="0,0,30,0"
+                        Click="ShowAllContractorsButton_Click"/>
+
+                    <Button x:Name="ShowAvailableContractorsButton"
+                        Content="Available Contractors"
+                        Width= "200"
+                        Click="ShowAvailableContractorsButton_Click"/>
+                </StackPanel>
+
                 <TextBlock Text="Add Job"
                    FontSize="18"
                    FontWeight="Bold"
@@ -166,8 +179,11 @@
                                FontWeight="Bold" />
 
                                     <TextBlock Text="{Binding Date, StringFormat='Date: {0:d}'}" />
-                                   
-                                    <TextBlock Text="{Binding ContractorAssigned.FullName}" />
+
+                                    <TextBlock>
+                                        <Run Text="Assigned: " />
+                                        <Run Text="{Binding ContractorAssigned.FullName, TargetNullValue=Unassigned}" />
+                                    </TextBlock>
 
                                     <TextBlock>
                                         <Run Text="Cost: " />
