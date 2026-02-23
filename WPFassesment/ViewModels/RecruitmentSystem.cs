@@ -7,14 +7,33 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace WPFassesment.ViewModels
 {
+    /// <summary>
+    /// Provides core logic for managing contractors and jobs.
+    /// Handles adding, assigning, completing, and filtering data.
+    /// </summary>
     public class RecruitmentSystem
     {
         private int nextContractorId = 1;
         private int nextJobId = 1;
 
+        /// <summary>
+        /// Gets the list of contractors in the system.
+        /// </summary>
         public List<Contractor> Contractors { get; } = new List<Contractor>();
+
+        /// <summary>
+        /// Gets the list of jobs in the system.
+        /// </summary>
         public List<Job> Jobs { get; } = new List<Job>();
 
+        /// <summary>
+        /// Adds a contractor to the system after validating inputs.
+        /// </summary>
+        /// <param name="firstName">Contractor first name.</param>
+        /// <param name="lastName">Contractor last name.</param>
+        /// <param name="startDate">Contractor start date.</param>
+        /// <param name="hourlyWage">Contractor hourly wage.</param>
+        /// <returns>True if contractor added successfully; otherwise false.</returns>
         public bool AddContractor(string firstName, string lastName, DateTime startDate, decimal hourlyWage)
         {
             if (!Contractor.IsValidName(firstName, lastName))
@@ -41,6 +60,14 @@ namespace WPFassesment.ViewModels
             nextContractorId++;
             return true;
         }
+
+        /// <summary>
+        /// Adds a job to the system after validating inputs.
+        /// </summary>
+        /// <param name="title">Job title.</param>
+        /// <param name="dateTime">Job date.</param>
+        /// <param name="cost">Job cost.</param>
+        /// <returns>True if job added successfully; otherwise false.</returns>
         public bool AddJob(string title, DateTime dateTime, decimal cost)
         {
             if (!Job.IsValidTitle(title))
@@ -64,18 +91,31 @@ namespace WPFassesment.ViewModels
             nextJobId++;
             return true;
         }
+
+        /// <summary>
+        /// Removes a contractor from the system using their ID.
+        /// </summary>
+        /// <param name="id">Contractor ID.</param>
+        /// <returns>True if contractor removed; otherwise false.</returns>
         public bool RemoveContractor(int id)
         {
             for (int i = 0; i < Contractors.Count; i++)
-
+            {
                 if (Contractors[i].Id == id)
                 {
                     Contractors.RemoveAt(i);
                     return true;
                 }
+            }
             return false;
-
         }
+
+        /// <summary>
+        /// Assigns a job to a contractor if both exist and are available.
+        /// </summary>
+        /// <param name="jobId">Job ID.</param>
+        /// <param name="contractorId">Contractor ID.</param>
+        /// <returns>True if assignment successful; otherwise false.</returns>
         public bool AssignJob(int jobId, int contractorId)
         {
             Job? jobToAssign = null;
@@ -92,7 +132,7 @@ namespace WPFassesment.ViewModels
 
             foreach (var contractor in Contractors)
             {
-                if(contractor.Id == contractorId)
+                if (contractor.Id == contractorId)
                 {
                     contractorToAssign = contractor;
                     break;
@@ -116,19 +156,23 @@ namespace WPFassesment.ViewModels
 
             foreach (var job in Jobs)
             {
-                if 
-                    (!job.Completed &&
+                if (!job.Completed &&
                     job.ContractorAssigned != null &&
                     job.ContractorAssigned.Id == contractorToAssign.Id)
                 {
                     return false;
                 }
             }
-        jobToAssign.ContractorAssigned = contractorToAssign;
-        jobToAssign.Completed = false;
-        return true;
+            jobToAssign.ContractorAssigned = contractorToAssign;
+            jobToAssign.Completed = false;
+            return true;
         }
 
+        /// <summary>
+        /// Marks a job as completed using its ID.
+        /// </summary>
+        /// <param name="jobId">Job ID.</param>
+        /// <returns>True if job marked completed; otherwise false.</returns>
         public bool CompleteJob(int jobId)
         {
             foreach (var job in Jobs)
@@ -146,6 +190,10 @@ namespace WPFassesment.ViewModels
             return false;
         }
 
+        /// <summary>
+        /// Returns contractors who are not assigned to any active (not completed) jobs.
+        /// </summary>
+        /// <returns>List of available contractors.</returns>
         public List<Contractor> GetAvailableContractors()
         {
             var available = new List<Contractor>();
@@ -173,10 +221,15 @@ namespace WPFassesment.ViewModels
 
             return available;
         }
+
+        /// <summary>
+        /// Returns jobs that are not assigned and not completed.
+        /// </summary>
+        /// <returns>List of unassigned jobs.</returns>
         public List<Job> GetUnassignedJobs()
         {
             var unassigned = new List<Job>();
-            
+
             foreach (var job in Jobs)
             {
                 if (job.ContractorAssigned == null && !job.Completed)
@@ -186,12 +239,20 @@ namespace WPFassesment.ViewModels
             }
             return unassigned;
         }
+
+        /// <summary>
+        /// Finds the first job with an exact matching cost.
+        /// </summary>
+        /// <param name="cost">Cost value to search for.</param>
+        /// <returns>The matching job if found; otherwise null.</returns>
         public Job? GetJobByCost(decimal cost)
         {
-            foreach ( var job in Jobs)
+            foreach (var job in Jobs)
             {
                 if (job.Cost == cost)
+                {
                     return job;
+                }
             }
             return null;
         }
